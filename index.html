@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+</head>
+<body>
+  <p>이동 중입니다... 자동으로 이동하지 않으면 <a id="link" href="#">여기</a>를 클릭하세요.</p>
+  <script>
+    fetch('./config.json?t=' + Date.now())
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('link').href = data.target;
+        window.location.replace(data.target);
+      })
+      .catch(err => console.error('설정 파일을 불러올 수 없습니다', err));
+  </script>
+</body>
+</html>
